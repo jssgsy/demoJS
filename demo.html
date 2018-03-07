@@ -46,6 +46,9 @@
     <!--自定义 vue 组件，可将 vue 组件理解成就是一个自定义的 html 标签-->
     <vue_component_name></vue_component_name>
     <vue_component_name></vue_component_name>
+
+    <!--需要使用v-bind将组件自定义的属性another_message与Vue实例的属性message绑定起来，这是第二步，也是最后一步-->
+    <another_vue_component_name v-bind:another_message="message"></another_vue_component_name>
 </div>
 
 <script>
@@ -53,6 +56,13 @@
     // 定义并注册组件，必须放在new Vue之前。vue_component_name是组件的名称
     Vue.component('vue_component_name', {
         template:'<p>这是 vue 自定义的组件(html标签)</p>',
+    });
+
+    // 演示如何在自定义组件中引用Vue实例的属性
+    Vue.component('another_vue_component_name', {
+        // 1. another_message相当于是组件自定义的属性，这只是引用Vue实例属性的第一步
+        props:['another_message'],
+        template:'<p>要在自定义组件中引用Vue实例中的属性还是要费此小功夫,绑定的message为：{{another_message}}</p>',
     });
 
     // 小技巧：此时打开页面的 console，可直接查看vue_obj对象的内容，应该是：所有全局变量都可查看
