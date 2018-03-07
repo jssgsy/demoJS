@@ -91,7 +91,7 @@
         },
         // 生命周期的勾子总共有8个：beforeCreate、created、beforeMount、mounted、beforeUpdate、updated、beforeDestroy、
         beforeCreate: function () {
-            alert('打开console查看Vue的完整生命周期的勾子');
+            //alert('打开console查看Vue的完整生命周期的勾子');
             console.log('下面依次是勾子调用的顺序：');
             console.log('beforeCreate');
         },
@@ -122,6 +122,16 @@
             reverseMessage: function () {
                 return this.message.split('').reverse().join('')
             }
+        },
+        // 侦听属性，放在watch下.
+        // 计算属性在大多数情况下更合适，但当需要在数据变化时执行异步或开销较大的操作时，侦听方式是最有用的
+        watch:{
+            // firstName与lastName是要监听的属性
+            message:function (old_value, new_value) {
+                console.log('改变之前：' + old_value);
+                console.log('改变之后：' + new_value);
+            }
+
         }
     });
 </script>
