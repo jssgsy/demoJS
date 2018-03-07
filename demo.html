@@ -10,6 +10,7 @@
 
 <!--将 dom 元素与 vue 实例绑定，之后便可在此 dom 元素下使用 vue 实例中的方法与变量，这就是 vue 的核心：声明式渲染-->
 <div id="vue_id">
+    <!--这里支持写js表达式，不过，只能包含单个表达式-->
     {{message}}
     <!--可以将 dom 元素的某个属性与 vue 实例的某个变量绑定，这就是 v-bind 的作用-->
     <span v-bind:title="message">鼠标放这里看看</span>
@@ -71,7 +72,7 @@
         el:"#vue_id",
         // data:vue的属性必须放在此
         data:{
-            // 当然，这里应该支持写 js 语句
+            // 当然，这里应该支持写js表达式，但是，只能包含单个表达式
             message:"现在时间为" + new Date().toLocaleString(),
             arr:['one', 'two', 'three', 'four'],
         },
