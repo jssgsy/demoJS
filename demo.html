@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-if="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-if="http://www.w3.org/1999/xhtml"
+      xmlns:v="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
 <head>
     <script src="library/vue.js"></script>
     <meta charset="UTF-8">
@@ -22,7 +23,7 @@
     <p v-if="message.length > 0"> v-if 中可以是表达式：{{message}}</p>
 
     <!--下面演示 if-else-->
-    <p v-if=" false">条件为真</p>
+    <p v-if="false">条件为真</p>
     <p v-else="true">条件为假</p>
 
     <!--演示 v-for-->
@@ -35,6 +36,10 @@
         <li v-for="(value, key) in arr">{{value}}-{{key}}</li>
     </ul>
 
+    <!--上面演示了dom 元素如何绑定 vue 实例的属性，下面演示如下如何将 js 的事件与vue实例进行绑定的方法-->
+    <!--change 是事件的一种类型，还有如click等-->
+    <input type="text" v-on:change="toUpper">
+
 </div>
 
 <script>
@@ -42,11 +47,18 @@
     var vue_obj = new Vue({
         // 声明此元素的id，前面必须有#，
         el:"#vue_id",
-        // data:vue 的方法与变量均放在此下
+        // data:vue的属性必须放在此
         data:{
             // 当然，这里应该支持写 js 语句
             message:"现在时间为" + new Date().toLocaleString(),
             arr:['one', 'two', 'three', 'four'],
+        },
+        // methods:vue的方法必须放在此
+        methods:{
+            toUpper:function () {
+                // 当然这里可以使用自己的成员变量
+                 alert(this.message);
+             }
         }
     });
 </script>
