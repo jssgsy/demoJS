@@ -50,6 +50,9 @@
 
     <!--需要使用v-bind将组件自定义的属性another_message与Vue实例的属性message绑定起来，这是第二步，也是最后一步-->
     <another_vue_component_name v-bind:another_message="message"></another_vue_component_name>
+
+    {{'这是计算属性：' + reverseMessage}}  <br>
+    可直接调用Vue实例的方法：{{fn()}}
 </div>
 
 <script>
@@ -81,7 +84,10 @@
             toUpper:function () {
                 // 当然这里可以使用自己的成员变量
                  alert(this.message);
-             }
+            },
+            fn: function () {
+                return '这是Vue实例方法返回的内容';
+            }
         },
         // 生命周期的勾子总共有8个：beforeCreate、created、beforeMount、mounted、beforeUpdate、updated、beforeDestroy、
         beforeCreate: function () {
@@ -110,6 +116,12 @@
         },
         destroyed:function () {
             console.log('destroyed');
+        },
+        // 计算属性放在computed下，很重要，如后台返回时间戳，前台可通过计算属性格式化成年月日等格式
+        computed: {
+            reverseMessage: function () {
+                return this.message.split('').reverse().join('')
+            }
         }
     });
 </script>
@@ -117,6 +129,10 @@
 指令：
     指令 (Directives)是带有v-前缀的特殊属性。指令属性的值预期是单个JavaScript表达式（v-for是例外情况）。注意，是js的表达式;
     一些指令能够接收一个“参数”，在指令名称之后以冒号表示，如v-bind:href、v-on:click
+
+计算属性VS方法：
+    计算属性有缓存，即计算属性只有在它的相关依赖发生改变时才会重新求值;
+    {{}}中直接调用方法会每次都执行;
 -->
 </body>
 </html>
