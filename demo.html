@@ -25,6 +25,16 @@
     <p v-if=" false">条件为真</p>
     <p v-else="true">条件为假</p>
 
+    <!--演示 v-for-->
+    <ol>
+        <!--形式1，只取值-->
+        <li v-for="item in arr">{{item}}</li>
+    </ol>
+    <ul>
+        <!--形式2，值与 key 均取，key是数组真正的索引，而不仅仅是数字形式的下标，即如果 arr 是关联数组，则 key 为真正的 key-->
+        <li v-for="(value, key) in arr">{{value}}-{{key}}</li>
+    </ul>
+
 </div>
 
 <script>
@@ -36,6 +46,7 @@
         data:{
             // 当然，这里应该支持写 js 语句
             message:"现在时间为" + new Date().toLocaleString(),
+            arr:['one', 'two', 'three', 'four'],
         }
     });
 </script>
