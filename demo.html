@@ -81,6 +81,34 @@
                 // 当然这里可以使用自己的成员变量
                  alert(this.message);
              }
+        },
+        // 生命周期的勾子总共有8个：beforeCreate、created、beforeMount、mounted、beforeUpdate、updated、beforeDestroy、
+        beforeCreate: function () {
+            alert('打开console查看Vue的完整生命周期的勾子');
+            console.log('下面依次是勾子调用的顺序：');
+            console.log('beforeCreate');
+        },
+        created:function () {
+            console.log('created');
+        },
+        beforeMount: function () {
+            console.log('beforeMount');
+        },
+        mounted: function () {
+            console.log('mounted');
+        },
+        beforeUpdate:function () {
+            console.log('beforeUpdate');
+        },
+        updated:function () {
+            console.log('update勾子只有在model变化时才发生');
+            console.log('updated');
+        },
+        beforeDestroy:function () {
+            console.log('beforeDestroy');
+        },
+        destroyed:function () {
+            console.log('destroyed');
         }
     });
 </script>
