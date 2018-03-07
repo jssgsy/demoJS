@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <script src="library/vue.js"></script>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--将 dom 元素与 vue 实例绑定，之后便可在此 dom 元素下使用 vue 实例中的方法与变量，这就是 vue 的核心：声明式渲染-->
+<div id="vue_id">
+    {{message}}
+    <!--可以将 dom 元素的某个属性与 vue 实例的某个变量绑定，这就是 v-bind 的作用-->
+    <span v-bind:title="message">鼠标放这里看看</span>
+</div>
+
+<script>
+    // 小技巧：此时打开页面的 console，可直接查看vue_obj对象的内容，应该是：所有全局变量都可查看
+    var vue_obj = new Vue({
+        // 声明此元素的id，前面必须有#，
+        el:"#vue_id",
+        // data:vue 的方法与变量均放在此下
+        data:{
+            // 当然，这里应该支持写 js 语句
+            message:"hello" + new Date().toLocaleString(),
+        }
+    });
+</script>
+
+</body>
+</html>
