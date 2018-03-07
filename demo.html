@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-if="http://www.w3.org/1999/xhtml">
 <head>
     <script src="library/vue.js"></script>
     <meta charset="UTF-8">
@@ -12,6 +12,19 @@
     {{message}}
     <!--可以将 dom 元素的某个属性与 vue 实例的某个变量绑定，这就是 v-bind 的作用-->
     <span v-bind:title="message">鼠标放这里看看</span>
+
+
+    <!--条件与循环，当条件满足时，dom 元素会出现-->
+    <!--可以是常量-->
+    <p v-if="true">true</p>
+    <p v-if="1">v-if 中可以是常量：1</p>
+    <!--可以是表达式-->
+    <p v-if="message.length > 0"> v-if 中可以是表达式：{{message}}</p>
+
+    <!--下面演示 if-else-->
+    <p v-if=" false">条件为真</p>
+    <p v-else="true">条件为假</p>
+
 </div>
 
 <script>
@@ -22,7 +35,7 @@
         // data:vue 的方法与变量均放在此下
         data:{
             // 当然，这里应该支持写 js 语句
-            message:"hello" + new Date().toLocaleString(),
+            message:"现在时间为" + new Date().toLocaleString(),
         }
     });
 </script>
