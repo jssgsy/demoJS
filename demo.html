@@ -59,7 +59,18 @@
     <another_vue_component_name v-bind:another_message="message"></another_vue_component_name>
 
     {{'这是计算属性：' + reverseMessage}}  <br>
-    可直接调用Vue实例的方法：{{fn()}}
+    可直接调用Vue实例的方法：{{fn()}}<br>
+
+    <!--vue的过滤器，利用管道命令将message当作参数传递给自定义的过滤器(其实就是一个函数)filter_name1，并且显示为过滤器函数的值-->
+    简单的过滤器：{{message | filter_name1}} <br>
+
+    <!--message作为filter_name1函数的参数传递，filter_name1的结果作为filter_name2的参数传递-->
+    过滤器可以串联：{{message | filter_name1 | filter_name2}} <br>
+
+    <!--过滤器只是一个JavaScript函数，因此可以接收参数-->
+    过滤器可接收额外的参数：{{message | filter_name3('param2', 'param3') }} <br>
+
+
 </div>
 
 <script>
@@ -130,6 +141,7 @@
         },
         // 计算属性放在computed下，很重要，如后台返回时间戳，前台可通过计算属性格式化成年月日等格式
         computed: {
+            // 相当于是新定义了一个属性，可直接在{{}}中或者v-bind中使用
             reverseMessage: function () {
                 return this.message.split('').reverse().join('')
             }
@@ -142,7 +154,20 @@
                 console.log('改变之前：' + old_value);
                 console.log('改变之后：' + new_value);
             }
-
+        },
+        // 所有的过滤器放在filters下。
+        filters:{
+            // value：由管道命令传递过来的参数
+            filter_name1:function (value) {
+                return '从管道命令传来的参数为：' + value;
+            },
+            filter_name2:function (value) {
+                return '第二次传来的管道命令为：' + value;
+            },
+            // value:通过管道传过来的参数;
+            filter_name3:function (value, arg2, arg3) {
+                return '从管道命令传来的参数为：' + value + ' ; 第二个参数为：' + arg2 + ' ; 第三个参数为：' + arg3;
+            }
         }
     });
 </script>
