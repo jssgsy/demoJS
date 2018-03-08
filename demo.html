@@ -37,6 +37,12 @@
         <!--形式2，值与 key 均取，key是数组真正的索引，而不仅仅是数字形式的下标，即如果 arr 是关联数组，则 key 为真正的 key-->
         <li v-for="(value, key) in arr">{{value}}-{{key}}</li>
     </ul>
+    <ol>
+        <!--v-for可用在对象上，此时查看key的含义更清晰-->
+        <li v-for="(value, key) in obj">
+            {{key}}:{{value}}
+        </li>
+    </ol>
 
     <!--上面演示了dom 元素如何绑定 vue 实例的属性，下面演示如下如何将 js 的事件与vue实例进行绑定的方法-->
     <!--change 是事件的一种类型，还有如click等-->
@@ -79,6 +85,10 @@
             // 当然，这里应该支持写js表达式，但是，只能包含单个表达式
             message:"现在时间为" + new Date().toLocaleString(),
             arr:['one', 'two', 'three', 'four'],
+            obj:{
+                name:'univ',
+                age:28
+            }
         },
         // methods:vue的方法必须放在此
         methods:{
