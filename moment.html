@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="library/moment.js"></script>
+    <meta charset="UTF-8">
+    <title>moment使用示例</title>
+</head>
+<body>
+
+<script>
+    /*
+    格式化
+     */
+    // 一般不用
+    console.log(new moment().format(''));
+    // 年月日
+    console.log(new moment().format('YYYY年MM月DD日'));
+    // 年月日时分秒
+    console.log(new moment().format('YYYY-MM-DD HH:mm:ss'));
+
+    /*
+    时间戳
+     */
+    // 获取当前时间的时间戳
+    console.log('当前时间戳为：' + new moment().unix());
+    console.log('当前时间戳为：' + new moment().format('X'));
+
+    // 把时间戳(注意，是毫秒单位)转换成moment对象，通过构造函数，只能通过毫秒级别
+    var timestamp = 1520504533000;
+    console.log('从毫秒转换成的时间为：' + new moment(timestamp).format('YYYY-MM-DD HH:mm:ss'));
+
+</script>
+
+</body>
+</html>
