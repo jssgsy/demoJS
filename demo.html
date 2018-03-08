@@ -4,7 +4,7 @@
 <head>
     <script src="library/vue.js"></script>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Vue常见用法</title>
 </head>
 <body>
 
@@ -179,6 +179,9 @@
 计算属性VS方法：
     计算属性有缓存，即计算属性只有在它的相关依赖发生改变时才会重新求值;
     {{}}中直接调用方法会每次都执行;
+
+过滤器VS计算属性
+    计算属性是基于当前Vue实例的属性进行的，而过滤器则是把内容(可能是后端返回的、不一定是Vue实例属性值)放进过滤器中并返回处理后的结果；
 -->
 </body>
 </html>
