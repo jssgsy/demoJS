@@ -55,8 +55,6 @@
     <vue_component_name></vue_component_name>
     <vue_component_name></vue_component_name>
 
-    <!--需要使用v-bind将组件自定义的属性another_message与Vue实例的属性message绑定起来，这是第二步，也是最后一步-->
-    <another_vue_component_name v-bind:another_message="message"></another_vue_component_name>
 
     {{'这是计算属性：' + reverseMessage}}  <br>
     可直接调用Vue实例的方法：{{fn()}}<br>
@@ -73,6 +71,9 @@
     <!--局部组件-->
     <local_component></local_component>
 
+    <!--子组件接收父组件的数据，必须使用v-bind进行绑定(当然这里也可以绑定常量值)，此时父组件的message值发生改变也会传递到子组件的name上-->
+    <local_component2 v-bind:name="message"></local_component2>
+
 </div>
 
 <script>
@@ -80,13 +81,6 @@
     // 定义并注册组件，必须放在new Vue之前。vue_component_name是组件的名称
     Vue.component('vue_component_name', {
         template:'<p>这是 vue 自定义的组件(html标签)</p>',
-    });
-
-    // 演示如何在自定义组件中引用Vue实例的属性
-    Vue.component('another_vue_component_name', {
-        // 1. another_message相当于是组件自定义的属性，这只是引用Vue实例属性的第一步
-        props:['another_message'],
-        template:'<p>要在自定义组件中引用Vue实例中的属性还是要费此小功夫,绑定的message为：{{another_message}}</p>',
     });
 
     // 小技巧：此时打开页面的 console，可直接查看vue_obj对象的内容，应该是：所有全局变量都可查看
@@ -182,7 +176,18 @@
                         local_name:"这是自定义局部组件的名称"
                     }
                 }
-            }
+            },
+            local_component2:{
+                // props属性的含义是：用来接收父组件的数据，与父组件进行通信。具体到这里则是，此子组件想通过name与父组件进行通信；
+                props:['name'],
+                template:"<p>局部组件：父组件通过props传递数据给子组件,这里绑定的值为：{{name}}</p>",
+                // props是子组件与父组件沟通的桥梁，而这里的data则是子组件自定义的属性
+                data: function (){
+                    return {
+                        local_name:"这是自定义局部组件的名称"
+                    }
+                }
+            },
         }
     });
 </script>
