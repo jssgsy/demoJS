@@ -70,6 +70,8 @@
     <!--过滤器只是一个JavaScript函数，因此可以接收参数-->
     过滤器可接收额外的参数：{{message | filter_name3('param2', 'param3') }} <br>
 
+    <!--局部组件-->
+    <local_component></local_component>
 
 </div>
 
@@ -167,6 +169,13 @@
             // value:通过管道传过来的参数;
             filter_name3:function (value, arg2, arg3) {
                 return '从管道命令传来的参数为：' + value + ' ; 第二个参数为：' + arg2 + ' ; 第三个参数为：' + arg3;
+            }
+        },
+        // 局部组件
+        components:{
+            // local_component是自定义组件的名称，任取
+            local_component:{
+                template:"<p>这是自定义的vue局部组件</p>"
             }
         }
     });
