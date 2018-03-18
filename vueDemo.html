@@ -175,7 +175,13 @@
         components:{
             // local_component是自定义组件的名称，任取
             local_component:{
-                template:"<p>这是自定义的vue局部组件</p>"
+                template:"<p>这是自定义的vue局部组件,内部的自定义的属性local_name值为：{{local_name}}</p>",
+                // 构造 Vue 实例时传入的各种选项大多数都可以在组件里使用。只有一个例外：data 必须是函数
+                data: function (){
+                    return {
+                        local_name:"这是自定义局部组件的名称"
+                    }
+                }
             }
         }
     });
