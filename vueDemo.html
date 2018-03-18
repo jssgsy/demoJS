@@ -74,6 +74,15 @@
     <!--子组件接收父组件的数据，必须使用v-bind进行绑定(当然这里也可以绑定常量值)，此时父组件的message值发生改变也会传递到子组件的name上-->
     <local_component2 v-bind:name="message"></local_component2>
 
+    <!--子组件向父组件报告事件,父组件可以在使用子组件的地方直接用 v-on 来监听子组件触发的事件
+    这里的含义是：父组件监听了子组件的event_1事件，即子组件中调用$emit(event_name)时会告之父组件，
+    此时父组件会调用自己的fn4方法进行响应
+    -->
+    <local_component3 v-on:event_1="fn2"></local_component3>
+
+    <!--向父组件报告事件时可以传递参数-->
+    <local_component3 v-on:event_2="fn3"></local_component3>
+
 </div>
 
 <script>
@@ -105,7 +114,13 @@
             },
             fn: function () {
                 return '这是Vue实例方法返回的内容';
-            }
+            },
+            fn2:function () {
+                alert('父组件收到了子组件报告的事件');
+            },
+            fn3:function (param) {
+                alert('父组件收到了子组件报告的事件,用接收到的参数为：' + param.custome_name);
+            },
         },
         // 生命周期的勾子总共有8个：beforeCreate、created、beforeMount、mounted、beforeUpdate、updated、beforeDestroy、
         beforeCreate: function () {
@@ -185,6 +200,25 @@
                 data: function (){
                     return {
                         local_name:"这是自定义局部组件的名称"
+                    }
+                }
+            },
+            // 子组件向父组件报告事件
+            local_component3:{
+                template:"<p v-on:click='hand_click'>演示子组件如何向父组件报告事件，点击这点。</p>",
+                data:function () {
+                    return {
+                        name: "univ"
+                    }
+                },
+                methods:{
+                    hand_click:function () {
+                        alert('子组件被点击了');
+                        // 向父组件报告自己触发了event_1事件，event_1是自定义的，任取
+                        this.$emit('event_1');
+
+                        // 向父组件报告自己触发了事件时，当然也可以向上传递数据
+                        this.$emit('event_2', {custome_name:this.name});
                     }
                 }
             },
