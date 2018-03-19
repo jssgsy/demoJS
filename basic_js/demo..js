@@ -19,6 +19,15 @@ var fn2 = () => {
     console.log('没有参数的箭头函数');
 };
 
+/*
+相当于
+var fn21 = function (x) {
+    // 如果只有一条语句，则相当于是直接返回
+    return x*2;
+};
+ */
+var fn21 = x => x*x;
+
 var fn3 = x => {
     console.log('一个参数的箭头函数，此时可省略参数的括号，参数为:' + x);
 };
