@@ -66,3 +66,39 @@ console.log(fn());  // 此时输出16，因为闭包能记住状态（i仍然被
 
 // 闭包-------------end
 
+
+// this-------------begin
+/*
+1. 在一个方法内部，this是一个特殊变量，它始终指向当前对象;
+2. 要保证this指向正确，必须用obj.xxx()的形式调用!!!
+ */
+var xiaoming = {
+    name: '小明',
+    birth: 1990,
+    age: function () {
+        function getAgeFromBirth() { // 方法中的方法,此时this指向当前对象,而当前对象为window(在strict模式下为undefined)
+            var y = new Date().getFullYear();
+            return y - this.birth;
+        }
+        return getAgeFromBirth();
+    },
+    age2: function () {
+        this.birth;// ok, 此时this正确的指向xiaoming
+    }
+};
+console.log(xiaoming.age()); // 报错
+
+var xiaoming2 = {
+    name: '小明',
+    birth: 1990,
+    age: function () {
+        var y = new Date().getFullYear();
+        return y - this.birth;
+    }
+};
+console.log(xiaoming2.age()); //ok
+var fn = xiaoming2.age;
+console.log(fn()); //报错,此时this指向window(在strict模式下指向undefined)
+
+// this-------------begin
+
