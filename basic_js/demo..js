@@ -102,3 +102,17 @@ console.log(fn()); //报错,此时this指向window(在strict模式下指向undef
 
 // this-------------begin
 
+// var和let的区别----------begin
+if (true) {
+    // var 定义的变量不是块作用域,又因为变量声明提升,所以其实在外部也可以访问到i,且值为23
+    var i = 23;
+}
+
+if (true) {
+    // let定义的变量是块作用域,不能变量声明提升,外部没法访问
+    let j = 24;
+}
+
+console.log(i); // 23
+console.log(j); // Uncaught ReferenceError: j is not defined
+// var和let的区别----------end
