@@ -144,3 +144,32 @@ var result = arr.filter(function (value) {
 });
 console.log(result);//[2,4]
 // map,reduce,filter----------end
+
+
+// getter/setter----------begin
+var obj1 = {
+    // 这是普通的数据属性
+    name: "univ",
+    // 这是访问属性(accessor property),定义一个与属性同名的方法即可
+    get birthday() {
+        console.log('birthday()被调用了');
+        return this.name
+    },//这里以逗号分隔
+    // setter的返回值不重要
+    set birthday(newValue) {
+        console.log('birthday(newValue)被调用了');
+        this.name = newValue
+    }
+};
+// 此时会调用birthday()来取值;
+console.log(obj1.birthday);
+// 此时会调用birthday()来设值;
+obj1.birthday = 'new birthday';
+console.log(obj1.birthday);
+
+/*
+补充:
+如果只有get则此属性是只读属性,不能赋值;
+如果只有set则此属性是只写属性,不能读取;(可分别注释上面的get与set查看)
+ */
+// getter/setter----------end
