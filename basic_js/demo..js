@@ -114,5 +114,33 @@ if (true) {
 }
 
 console.log(i); // 23
-console.log(j); // Uncaught ReferenceError: j is not defined
+//console.log(j); // Uncaught ReferenceError: j is not defined
 // var和let的区别----------end
+
+// map,reduce,filter----------begin
+var arr = [1,2,3,4,5,6];
+// map:将给定的回调函数作用于数组的每个元素,并返回作用后的数组,并不会改变原数组的内容!
+var result = arr.map(function (value) {
+    return value*2;
+});
+// 并不会改变原数组的内容!
+console.log(arr);
+console.log(result);
+
+// reduce常用作累积操作,返回一个计算结果
+/*
+arr = [x1, x2, x3, x4],则arr.reduce(callback)相当于是callback(callback(callback(x1,x2), x3), x4)
+ */
+var arr = [1,2,3,4];
+var result = arr.reduce(function (x, y) {
+    return x + y;
+});
+console.log(result);//1+2+3+4 = 10
+
+//filter:过滤掉不符合条件的元素
+var arr = [1,2,3,4];
+var result = arr.filter(function (value) {
+    return value % 2 == 0;// return true则表示此元素符合条件,并返回
+});
+console.log(result);//[2,4]
+// map,reduce,filter----------end
