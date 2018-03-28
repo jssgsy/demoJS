@@ -18,4 +18,10 @@ var obj = {
 };
 
 // 一个模块想要对外暴露变量（函数也是变量），可以用module.exports = variable
-module.exports = hello;
+// module.exports导出的实际上是一个对象，对象的属性就是要导出的函数、变量
+module.exports = {
+    _hello : hello,//注意这里只需要函数名，不用括号
+    _i: i,
+    _arr: arr,
+    _obj:obj
+};
