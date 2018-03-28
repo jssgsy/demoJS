@@ -2,6 +2,7 @@
 
 // 一个模块要引用其他模块暴露的变量，用var ref = require('module_name');就拿到了引用模块的变量
 // 此时first实际上是一个对象,属性即是导出的变量、函数等
+// 相对路径不可少，否则报错
 var first = require('./first');
 // first();
 

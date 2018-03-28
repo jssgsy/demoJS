@@ -19,9 +19,28 @@ var obj = {
 
 // 一个模块想要对外暴露变量（函数也是变量），可以用module.exports = variable
 // module.exports导出的实际上是一个对象，对象的属性就是要导出的函数、变量
+// 第一种写法
 module.exports = {
     _hello : hello,//注意这里只需要函数名，不用括号
     _i: i,
     _arr: arr,
     _obj:obj
 };
+
+// 上面的等价写法,因为module.exports实际上是一个对象而已
+// 第二种写法
+/*module.exports._hello = hello;
+module.exports._i = i;
+module.exports._arr = arr;
+module.exports._obj = obj;*/
+
+// 也等价于
+// 第三种写法
+/*module.exports = {
+    _hello:function hello() {
+        console.log('hello, module');
+    },
+    _i: i,
+    _arr: arr,
+    _obj:obj
+};*/
