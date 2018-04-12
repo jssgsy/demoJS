@@ -171,6 +171,8 @@
             // value：由管道命令传递过来的参数
             filter_name1:function (value) {
                 return '从管道命令传来的参数为：' + value;
+                // 注意：filters下的函数中不能引用data下的属性值，下面是错误的
+                // console.log(this.message);
             },
             filter_name2:function (value) {
                 return '第二次传来的管道命令为：' + value;
