@@ -89,7 +89,13 @@
 
     // 定义并注册组件，必须放在new Vue之前。vue_component_name是组件的名称
     Vue.component('vue_component_name', {
-        template:'<p>这是 vue 自定义的组件(html标签)</p>',
+        template:'<p>这是 vue 自定义的组件(html标签)，组件中定义的变量为name：{{name}}</p>',
+        // 注意，组件（包含全局与局部变量）中的data必须为一个函数！，而不是像定义Vue实例时需要是对象
+        data: function () {
+            return {
+                name:'univ',
+            }
+        }
     });
 
     // 小技巧：此时打开页面的 console，可直接查看vue_obj对象的内容，应该是：所有全局变量都可查看
@@ -196,6 +202,7 @@
             },
             local_component2:{
                 // props属性的含义是：用来接收父组件的数据，与父组件进行通信。具体到这里则是，此子组件想通过name与父组件进行通信；
+                // name相当于是子组件定义的一个变量，用来和父组件的属性进行绑定
                 props:['name'],
                 template:"<p>局部组件：父组件通过props传递数据给子组件,这里绑定的值为：{{name}}</p>",
                 // props是子组件与父组件沟通的桥梁，而这里的data则是子组件自定义的属性
